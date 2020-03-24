@@ -1,6 +1,8 @@
 package br.com.alexandremarcondes.covid19.data.arcgis
 
+import com.google.gson.annotations.SerializedName
+
 data class SpatialReference (
-    val wkid : Int,
-    val latestWkid : Int
+    @SerializedName("wkid") val wkid : Int,
+    @SerializedName("latestWkid") val latestWkid : Int
 )

@@ -1,5 +1,7 @@
 package br.com.alexandremarcondes.covid19.data.arcgis
 
+import com.google.gson.annotations.SerializedName
+
 data class Features (
-    val attributes : Attributes
+    @SerializedName("attributes") val attributes : Attributes
 )

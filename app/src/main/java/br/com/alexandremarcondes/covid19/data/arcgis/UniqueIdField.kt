@@ -1,6 +1,8 @@
 package br.com.alexandremarcondes.covid19.data.arcgis
 
+import com.google.gson.annotations.SerializedName
+
 data class UniqueIdField (
-    val name : String,
-    val isSystemMaintained : Boolean
+    @SerializedName("name") val name : String,
+    @SerializedName("isSystemMaintained") val isSystemMaintained : Boolean
 )
