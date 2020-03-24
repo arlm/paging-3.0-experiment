@@ -9,15 +9,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ArcgisService {
-    private val service: ArcgisServiceApi
-
-    init {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://services9.arcgis.com/N9p5hsImWXAccRNI/arcgis/rest/services/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        service = retrofit.create(ArcgisServiceApi::class.java)
-    }
+    private val arcgisServiceApi: ArcgisServiceApi = Retrofit.Builder()
+        .baseUrl("https://services9.arcgis.com/N9p5hsImWXAccRNI/arcgis/rest/services/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+        .create(ArcgisServiceApi::class.java)
 
     suspend fun getData(
         region: String,
@@ -25,7 +21,7 @@ class ArcgisService {
         recordCount: Int
     ): ArcgisData? {
         val where = "(Confirmed > 0) AND (Country_Region='$region')"
-        val call = service.getData(where = where,
+        val call = arcgisServiceApi.getData(where = where,
             resultOffset =  offset, resultRecordCount =  recordCount)
 
         return getArcgisData(call)
@@ -35,7 +31,16 @@ class ArcgisService {
         offset: Int,
         recordCount: Int
     ): ArcgisData? {
-        val call = service.getData(resultOffset =  offset, resultRecordCount =  recordCount)
+        val call = arcgisServiceApi.getData(resultOffset =  offset, resultRecordCount =  recordCount)
+
+        return getArcgisData(call)
+    }
+
+    suspend fun getHistoricalData(
+        offset: Int,
+        recordCount: Int
+    ): ArcgisData? {
+        val call = arcgisServiceApi.getHistoricalData(resultOffset =  offset, resultRecordCount =  recordCount)
 
         return getArcgisData(call)
     }

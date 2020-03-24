@@ -7,16 +7,18 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import br.com.alexandremarcondes.covid19.R
 import br.com.alexandremarcondes.covid19.data.CovidData
+import br.com.alexandremarcondes.covid19.data.CovidHistoricalData
+import br.com.alexandremarcondes.covid19.ui.home.CovidHistoricalViewHolder
 import br.com.alexandremarcondes.covid19.ui.home.CovidViewHolder
 
-class CovidPagingDataAdapter : PagingDataAdapter<CovidData, CovidViewHolder>(USER_COMPARATOR) {
+class CovidPagingHistoricalDataAdapter : PagingDataAdapter<CovidHistoricalData, CovidHistoricalViewHolder>(USER_COMPARATOR) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CovidViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CovidHistoricalViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.covid_item_view, parent, false)
-        return CovidViewHolder(view)
+        return CovidHistoricalViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: CovidViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CovidHistoricalViewHolder, position: Int) {
         val repoItem = getItem(position)
         // Note that item may be null if placeholders aren't disabled,
         // so our ViewHolder supports binding to null
@@ -24,12 +26,12 @@ class CovidPagingDataAdapter : PagingDataAdapter<CovidData, CovidViewHolder>(USE
     }
 
     companion object {
-        val USER_COMPARATOR = object : DiffUtil.ItemCallback<CovidData>() {
-            override fun areItemsTheSame(oldItem: CovidData, newItem: CovidData) =
+        val USER_COMPARATOR = object : DiffUtil.ItemCallback<CovidHistoricalData>() {
+            override fun areItemsTheSame(oldItem: CovidHistoricalData, newItem: CovidHistoricalData) =
                 // User ID serves as unique ID
                 oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: CovidData, newItem: CovidData) =
+            override fun areContentsTheSame(oldItem: CovidHistoricalData, newItem: CovidHistoricalData) =
             // Compare full contents
                 // (note: Java users should call .equals()!)
                 oldItem == newItem

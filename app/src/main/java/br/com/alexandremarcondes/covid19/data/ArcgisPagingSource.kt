@@ -18,13 +18,13 @@ class ArcgisPagingSource(
 
             response?.features?.forEach{
                 val date = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    Date(Instant.ofEpochSecond(it.attributes.last_Update.toLong()).toEpochMilli())
+                    Date(Instant.ofEpochSecond(it.attributes.last_Update).toEpochMilli())
                 } else {
-                    Date(it.attributes.last_Update.toLong() * 1000)
+                    Date(it.attributes.last_Update * 1000)
                 }
 
                 val data = CovidData(
-                    id = it.attributes.oBJECTID,
+                    id = it.attributes.OBJECTID,
                     cases = it.attributes.confirmed,
                     deaths = it.attributes.deaths,
                     recoveries = it.attributes.recovered,

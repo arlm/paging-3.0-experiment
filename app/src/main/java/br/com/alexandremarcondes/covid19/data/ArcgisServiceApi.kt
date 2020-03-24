@@ -24,4 +24,22 @@ interface ArcgisServiceApi {
                 @Query("outFields") outFields:String ="*",
                 @Query("outSR") outSR:Int = 102100,
                 @Query("cacheHint")cacheHint:Boolean = true): Call<ArcgisData>
+
+    @Headers(
+        "origin: https://www.arcgis.com",
+        "referer: https://www.arcgis.com/apps/opsdashboard/index.html",
+        "Accept: application/json",
+        "Content-type:application/json"
+    )
+    @GET("PmO6oUpJizhI0jM8pu3n/FeatureServer/0/query")
+    fun getHistoricalData(@Query("where") where: String = "1=1",
+                @Query("resultOffset") resultOffset: Int = 0,
+                @Query("resultRecordCount") resultRecordCount: Int = 250,
+                @Query("f") f: String = "json",
+                @Query("returnGeometry")returnGeometry: Boolean = false,
+                @Query("spatialRel") spatialRel: String = "esriSpatialRelIntersects",
+                @Query("orderByFields") orderByFields:String ="Report_Date_String asc",
+                @Query("outFields") outFields:String ="*",
+                @Query("outSR") outSR:Int = 102100,
+                @Query("cacheHint")cacheHint:Boolean = true): Call<ArcgisData>
 }

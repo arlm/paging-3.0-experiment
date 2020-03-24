@@ -15,14 +15,15 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.alexandremarcondes.covid19.R
 import br.com.alexandremarcondes.covid19.data.CovidData
 import br.com.alexandremarcondes.covid19.model.CovidPagingDataAdapter
+import br.com.alexandremarcondes.covid19.model.CovidPagingHistoricalDataAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
-    private lateinit var viewModel: CovidViewModel
-    private lateinit var pagingAdapter: CovidPagingDataAdapter
+    private lateinit var viewModel: CovidHistoricalViewModel
+    private lateinit var pagingAdapter: CovidPagingHistoricalDataAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -41,10 +42,10 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
 
-        pagingAdapter = CovidPagingDataAdapter()
+        pagingAdapter = CovidPagingHistoricalDataAdapter()
         recyclerView.adapter = pagingAdapter
 
-        viewModel = ViewModelProviders.of(this).get(CovidViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(CovidHistoricalViewModel::class.java)
 
         // Kotlin Flow
         lifecycleScope.launch {

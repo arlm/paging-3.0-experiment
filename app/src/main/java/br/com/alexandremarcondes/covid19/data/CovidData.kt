@@ -7,7 +7,7 @@ data class CovidData(
     val country: String,
     val region: String,
     val county: String?,
-    val date: Date,
+    val date: Date?,
     val cases: Int,
     val deaths: Int,
     val recoveries: Int,
