@@ -4,15 +4,15 @@ buildscript {
     apply from: 'versions.gradle'
 
     ext.kotlin_version = '1.3.70'
-
+/*
     repositories {
         google()
         jcenter()
         // add the following to use Jetpack pre-release snapshots:
         maven { url 'https://androidx-dev-prod.appspot.com/snapshots/builds/6295087/artifacts/repository' }
     }
-
-    //addRepos(repositories)
+*/
+    addRepos(repositories)
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.1'
@@ -24,14 +24,15 @@ buildscript {
 }
 
 allprojects {
+/*
     repositories {
         google()
         jcenter()
         // add the following to use Jetpack pre-release snapshots:
         maven { url 'https://androidx-dev-prod.appspot.com/snapshots/builds/6295087/artifacts/repository' }
     }
-
-    // addRepos(repositories)
+*/
+    addRepos(repositories)
 }
 
 task clean(type: Delete) {
